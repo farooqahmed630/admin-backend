@@ -811,7 +811,33 @@ const getProfile = async (req, res) => {
     })
   }
 }
-
+// Get total user count - ADD THIS FUNCTION
+const getUserCount = async (req, res) => {
+  try {
+    console.log("🔢 /api/users/count endpoint called");
+    
+    // Count ALL users in the database
+    const totalUsers = await User.countDocuments({});
+    
+    console.log(`✅ Total users found: ${totalUsers}`);
+    
+    res.json({
+      success: true,
+      count: totalUsers,
+      totalUsers: totalUsers,
+      message: `Total users: ${totalUsers}`,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error("❌ Error counting users:", error);
+    res.status(500).json({
+      success: false,
+      error: "Failed to count users",
+      details: error.message,
+      count: 0
+    });
+  }
+};
 const changePassword = async (req, res) => {
   try {
     const userId = req.user._id
@@ -874,5 +900,5 @@ module.exports = {
   editUserBalance,
   updateProfile,
   getProfile,
-  changePassword,
+  changePassword,getUserCount,
 }
