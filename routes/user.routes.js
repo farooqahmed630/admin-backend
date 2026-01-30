@@ -47,10 +47,25 @@ console.log("Available controller functions:", Object.keys(userController))
 
 // Get all users (with pagination, search, filtering)
 router.get("/", userController.getUsers)
+// ===== USER COUNT ENDPOINT =====
 
+// Get total user count
+router.get("/count", userController.getUserCount);
 // Get user profile (current user)
 // router.get("/profile", auth, userController.getProfile)
+// ... existing routes ...
 
+// ===== USER COUNT ENDPOINT =====
+
+// Get total user count
+router.get("/count", userController.getUserCount);
+
+// ===== STATISTICS AND ANALYTICS =====
+
+// Get comprehensive user statistics
+router.get("/stats/overview", userController.getUserStats)
+
+// ... rest of the routes ...
 // Update user profile (current user)
 // router.put("/profile", auth, userController.updateProfile)
 
