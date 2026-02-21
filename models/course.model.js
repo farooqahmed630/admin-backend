@@ -2,12 +2,27 @@ const mongoose = require("mongoose");
 
 const courseSchema = new mongoose.Schema(
   {
-    courseName: { type: String, required: true },
-    language: { type: String, default: "en" },
+    courseName: { type: String, required: true, unique: true },
+    // Remove the single language field - we'll store all languages in the pages
+    
     pages: [
       {
-        title: { type: String, required: true },
-        content: { type: String, required: true },
+        // Title in all 5 languages
+        title: {
+          en: { type: String, required: true },
+          hi: { type: String, default: "" },
+          ur: { type: String, default: "" },
+          ar: { type: String, default: "" },
+          es: { type: String, default: "" }
+        },
+        // Content in all 5 languages
+        content: {
+          en: { type: String, required: true },
+          hi: { type: String, default: "" },
+          ur: { type: String, default: "" },
+          ar: { type: String, default: "" },
+          es: { type: String, default: "" }
+        },
         time: { type: String, required: true },
       },
     ],
